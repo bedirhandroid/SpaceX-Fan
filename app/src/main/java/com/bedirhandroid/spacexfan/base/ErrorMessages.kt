@@ -1,0 +1,13 @@
+package com.bedirhandroid.spacexfan.base
+
+import com.bedirhandroid.spacexfan.R
+
+enum class ErrorMessages(val id : Int) {
+    //Error message Types
+    ERROR(R.string.error_message),
+    UNKNOWN_ERROR(R.string.error_unknown),
+    TIME_OUT(R.string.error_time_out),
+    TRY_AGAIN(R.string.error_try_again),
+    ERROR_EOFE(R.string.error_eofe),
+    ERROR_WINDOW_MANAGER(R.string.error_window_manager)
+}
