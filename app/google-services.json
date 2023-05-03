@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "559257958247",
+    "project_id": "spacex-fan-42493",
+    "storage_bucket": "spacex-fan-42493.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559257958247:android:8c651c47bfc6ae6cd661c2",
+        "android_client_info": {
+          "package_name": "com.bedirhandroid.spacexfan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559257958247-m4rn7hb1r7m43theh9depb7mpi0pofqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlOHFFG11jFc55A31Zvf2DM06r96Hmoi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559257958247-m4rn7hb1r7m43theh9depb7mpi0pofqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
