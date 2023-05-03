@@ -2,6 +2,7 @@ package com.bedirhandroid.spacexfan.util
 
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import com.bedirhandroid.spacexfan.R
 import com.bumptech.glide.Glide
 
@@ -18,6 +19,9 @@ fun View.visible() {
     this.visibility = View.VISIBLE
 }
 
+infix fun ImageView.isFavorite(bool: Boolean) {
+    if (bool) this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.purple_700))
+}
 //ImageView ext for load image
 fun ImageView.loadImage(url: String) {
     Glide.with(this.context)

@@ -23,5 +23,6 @@ data class SpaceXRocketsResponseItem(
     val second_stage: SecondStage,
     val stages: Int,
     val success_rate_pct: Int,
-    val wikipedia: String
+    val wikipedia: String,
+    val isFavorite: Boolean
 )

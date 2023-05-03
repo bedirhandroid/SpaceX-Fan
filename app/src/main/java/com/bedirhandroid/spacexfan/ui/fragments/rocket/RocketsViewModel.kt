@@ -13,5 +13,5 @@ import javax.inject.Inject
 @HiltViewModel
 class RocketsViewModel @Inject constructor(private val repo : Repo) : BaseViewModel() {
     val getRocketsList : Flow<PagingData<SpaceXRocketsResponseItem>> =
-        repo.getLauncherList().cachedIn(viewModelScope)
+        repo.getRocketList().cachedIn(viewModelScope)
 }

@@ -9,12 +9,23 @@
         android:id="@+id/nav_home"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.rocket.RocketsFragment"
         android:label="@string/menu_rockets"
-        tools:layout="@layout/fragment_rockets" />
+        tools:layout="@layout/fragment_rockets" >
+        <action
+            android:id="@+id/action_nav_home_to_rocketDetailFragment"
+            app:destination="@id/rocketDetailFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.bedirhandroid.spacexfan.ui.fragments.detail.FavoriteRocketsFragment"
+        android:name="com.bedirhandroid.spacexfan.ui.fragments.favorite.FavoriteRocketsFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_favorite_rockets" />
+    <fragment
+        android:id="@+id/rocketDetailFragment"
+        android:name="com.bedirhandroid.spacexfan.ui.fragments.detail.RocketDetailFragment"
+        android:label="fragment_rocket_detail"
+        tools:layout="@layout/fragment_rocket_detail" />
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.bedirhandroid.spacexfan.ui.fragments.detail
+package com.bedirhandroid.spacexfan.ui.fragments.favorite
 
 import com.bedirhandroid.spacexfan.base.BaseFragment
 import com.bedirhandroid.spacexfan.databinding.FragmentFavoriteRocketsBinding
