@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.bedirhandroid.spacexfan.R
 import com.bedirhandroid.spacexfan.base.BaseActivity
 import com.bedirhandroid.spacexfan.databinding.ActivityNavDrawerBinding
+import com.bedirhandroid.spacexfan.util.visibleIf
 import com.google.android.material.navigation.NavigationView
 
 class NavDrawerActivity : BaseActivity<ActivityNavDrawerBinding, NavDrawerViewModel>() {
@@ -27,6 +28,7 @@ class NavDrawerActivity : BaseActivity<ActivityNavDrawerBinding, NavDrawerViewMo
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        binding.appBarNavDrawer.btnSignOut visibleIf (viewModel.auth.currentUser != null)
     }
 
     override fun initListeners() {
