@@ -32,4 +32,18 @@
     <string name="menu_rockets">Rockets</string>
     <string name="menu_favorite">Favorite Rockets</string>
     <string name="menu_detail">Rocket Detail</string>
+    <string name="menu_login">Login Fragment</string>
+
+
+    <string name="fill_all_fields">Tüm Alanları Doldurunuz!</string>
+    <string name="empty_list">Liste Boş Roketleri Görmek İçin Tıklayınız!</string>
+    <string name="must_login_or_register">Bu Sayfaya Erişmek İçin Üye Olmalısınız!</string>
+    <string name="login_register">Giriş Yap/Kayıt Ol</string>
+    <string name="login">Giriş Yap</string>
+    <string name="register">Kayıt Ol</string>
+    <string name="e_mail_adress">E-posta adresi</string>
+    <string name="password">Şifre</string>
+    <string name="or_register">Ya da buradan Kayıt Ol!</string>
+    <string name="or_login">Ya da buradan giriş Yap!</string>
+    <string name="try_again">Tekrar Dene!</string>
 </resources>

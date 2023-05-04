@@ -1,9 +1,11 @@
 package com.bedirhandroid.spacexfan.ui.fragments.login
 
+import android.content.Intent
 import android.widget.Toast
 import com.bedirhandroid.spacexfan.R
 import com.bedirhandroid.spacexfan.base.BaseFragment
 import com.bedirhandroid.spacexfan.databinding.FragmentLoginBinding
+import com.bedirhandroid.spacexfan.ui.activities.navdrawer.NavDrawerActivity
 import com.bedirhandroid.spacexfan.util.gone
 import com.bedirhandroid.spacexfan.util.isNotEmpty
 import com.bedirhandroid.spacexfan.util.navigateTo
@@ -14,7 +16,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun initView() {
         viewModel.auth.currentUser?.let {
             navigateTo(R.id.action_loginFragment_to_rocketsFragment)
-        }?: kotlin.run {
+        } ?: kotlin.run {
             setLoginView()
         }
     }
@@ -31,14 +33,22 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
                 if (edtEmail.isNotEmpty() && edtPassword.isNotEmpty()) {
                     viewModel.loginUser(edtEmail.text.toString(), edtPassword.text.toString())
                 } else {
-                    Toast.makeText(requireContext(), "Tüm Alanları Doldurunuz!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.fill_all_fields),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             btnRegister.setOnClickListener {
-                if (edtEmail.isNotEmpty() && edtUsername.isNotEmpty() && edtPassword.isNotEmpty()) {
+                if (edtEmail.isNotEmpty() && edtPassword.isNotEmpty()) {
                     viewModel.registerUser(edtEmail.text.toString(), edtPassword.text.toString())
                 } else {
-                    Toast.makeText(requireContext(), "Tüm Alanları Doldurunuz!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.fill_all_fields),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -47,34 +57,40 @@ class LoginFragment : BaseFragment<FragmentLoginBinding, LoginViewModel>() {
     override fun initObservers() {
         viewModelScope {
             registerUserMutableLiveData.observe(viewLifecycleOwner) {
-                navigateTo(R.id.action_loginFragment_to_rocketsFragment)
+                activityRecreate()
             }
             loginUserMutableLiveData.observe(viewLifecycleOwner) {
-                navigateTo(R.id.action_loginFragment_to_rocketsFragment)
+                activityRecreate()
             }
         }
     }
 
     private fun setRegisterView() {
         viewBindingScope {
-            edtUsername.visible()
+            loginTitle.text = getString(R.string.register)
             btnRegister.visible()
             loginAction.visible()
             btnLogin.gone()
             registerAction.gone()
-            forgotPassword.gone()
         }
     }
 
     private fun setLoginView() {
         viewBindingScope {
-            edtUsername.gone()
+            loginTitle.text = getString(R.string.login)
             btnRegister.gone()
-
             loginAction.gone()
             btnLogin.visible()
             registerAction.visible()
-            forgotPassword.visible()
+        }
+    }
+
+    private fun activityRecreate() {
+        requireActivity().apply {
+            Intent(requireActivity(), NavDrawerActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
     }
 }

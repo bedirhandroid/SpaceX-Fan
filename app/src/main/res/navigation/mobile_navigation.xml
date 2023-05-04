@@ -38,11 +38,15 @@
         android:id="@+id/rocketDetailFragment"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.detail.RocketDetailFragment"
         android:label="@string/menu_detail"
-        tools:layout="@layout/fragment_rocket_detail" />
+        tools:layout="@layout/fragment_rocket_detail" >
+        <action
+            android:id="@+id/action_rocketDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.login.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/menu_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_rocketsFragment"

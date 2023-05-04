@@ -2,11 +2,9 @@ package com.bedirhandroid.spacexfan.ui.adapters.rockets
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.bedirhandroid.spacexfan.R
 import com.bedirhandroid.spacexfan.databinding.RocketsRowBinding
 import com.bedirhandroid.spacexfan.network.response.rockets.SpaceXRocketsResponseItem
 import com.bedirhandroid.spacexfan.ui.adapters.photo.PhotoAdapter

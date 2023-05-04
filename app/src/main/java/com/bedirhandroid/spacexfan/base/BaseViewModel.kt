@@ -1,11 +1,12 @@
 package com.bedirhandroid.spacexfan.base
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bedirhandroid.spacexfan.network.response.rockets.SpaceXRocketsResponseItem
+import com.bedirhandroid.spacexfan.util.Constant.USERS
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -20,11 +21,13 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class BaseViewModel : ViewModel() {
-    val errorLiveData: MutableLiveData<String> = MutableLiveData()
+    val errorLiveData: MutableLiveData<ErrorMessages> = MutableLiveData()
     val showProgress: MutableLiveData<Boolean> = MutableLiveData()
+    val registerUserMutableLiveData = MutableLiveData<FirebaseUser>()
+    val loginUserMutableLiveData = MutableLiveData<FirebaseUser>()
     val mutableFavList = MutableLiveData<ArrayList<SpaceXRocketsResponseItem>>()
     val auth = FirebaseAuth.getInstance()
-    val dataBase = FirebaseDatabase.getInstance()
+    private val dataBase = FirebaseDatabase.getInstance()
 
 
     //inline coroutines scope
@@ -39,11 +42,11 @@ abstract class BaseViewModel : ViewModel() {
                 block()
             } catch (exception: Exception) {
                 when (exception) {
-                    is TimeoutException -> errorLiveData.postValue(ErrorMessages.TIME_OUT.toString())
-                    is ProtocolException -> errorLiveData.postValue(ErrorMessages.TRY_AGAIN.toString())
-                    is EOFException -> errorLiveData.postValue(ErrorMessages.ERROR_EOFE.toString())
+                    is TimeoutException -> errorLiveData.postValue(ErrorMessages.TIME_OUT)
+                    is ProtocolException -> errorLiveData.postValue(ErrorMessages.TRY_AGAIN)
+                    is EOFException -> errorLiveData.postValue(ErrorMessages.ERROR_EOFE)
                     else -> {
-                        errorLiveData.postValue(ErrorMessages.UNKNOWN_ERROR.toString())
+                        errorLiveData.postValue(ErrorMessages.UNKNOWN_ERROR)
                     }
                 }
             } finally {
@@ -53,33 +56,58 @@ abstract class BaseViewModel : ViewModel() {
     }
 
     fun getDataBaseList() {
-        dataBase.getReference("users").child(auth.uid!!)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val favList = arrayListOf<SpaceXRocketsResponseItem>()
-                    for (itemSnapshot in snapshot.children) {
-                        val item = itemSnapshot.getValue(SpaceXRocketsResponseItem::class.java)
-                        item?.let(favList::add)
+        if (auth.currentUser != null) {
+            dataBase.getReference(USERS).child(auth.uid!!)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        val favList = arrayListOf<SpaceXRocketsResponseItem>()
+                        for (itemSnapshot in snapshot.children) {
+                            val item = itemSnapshot.getValue(SpaceXRocketsResponseItem::class.java)
+                            item?.let(favList::add)
+                        }
+                        mutableFavList.postValue(favList)
                     }
-                    mutableFavList.postValue(favList)
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    errorLiveData.postValue(error.message)
-                }
+                    override fun onCancelled(error: DatabaseError) {
+                        errorLiveData.postValue(ErrorMessages.ERROR)
+                    }
+                })
+        }
+    }
 
-            })
+    fun registerUser(email: String, pass: String) {
+        auth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener {
+            registerUserMutableLiveData.postValue(it.user)
+        }.addOnFailureListener {
+            errorLiveData.postValue(ErrorMessages.ERROR)
+        }
+    }
+
+    fun loginUser(email: String, pass: String) {
+        auth.signInWithEmailAndPassword(email, pass).addOnSuccessListener {
+            loginUserMutableLiveData.postValue(it.user)
+        }.addOnFailureListener {
+            errorLiveData.postValue(ErrorMessages.ERROR)
+        }
     }
 
     fun addDataBaseOperation(data: SpaceXRocketsResponseItem) {
-        dataBase.getReference("users").child(auth.uid!!)
-            .child(data.id.toString())
-            .setValue(data)
+        if (auth.currentUser != null) {
+            dataBase.getReference(USERS).child(auth.uid!!)
+                .child(data.id.toString())
+                .setValue(data)
+        }
     }
 
 
     fun removeDataBaseOperation(data: SpaceXRocketsResponseItem) {
-        dataBase.getReference("users").child(auth.uid!!)
-            .child(data.id.toString()).removeValue()
+        if (auth.currentUser != null) {
+            dataBase.getReference(USERS).child(auth.uid!!)
+                .child(data.id.toString()).removeValue()
+        }
+    }
+
+    fun signOut() {
+        auth.signOut()
     }
 }

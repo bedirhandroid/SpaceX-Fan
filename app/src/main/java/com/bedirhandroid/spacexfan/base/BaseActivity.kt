@@ -1,10 +1,8 @@
 package com.bedirhandroid.spacexfan.base
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
@@ -19,11 +17,6 @@ abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : HiltActivity
     private val bindingClass = type.actualTypeArguments[0] as Class<VB>
     private val viewModelClass = type.actualTypeArguments[1] as Class<VM>
     protected val progressBar: com.bedirhandroid.spacexfan.util.ProgressBar by lazy { com.bedirhandroid.spacexfan.util.ProgressBar.newInstance(viewModel.showProgress) }
-
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,10 +50,9 @@ abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : HiltActivity
     }
 
     private fun observeBaseLiveData() {
-        //observe baseViewModel LiveDatas
         viewModelScope {
             this.errorLiveData.observe(this@BaseActivity) {
-                Toast.makeText(this@BaseActivity, it, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BaseActivity, getString(it.id), Toast.LENGTH_SHORT).show()
             }
             this.showProgress.observe(this@BaseActivity) {
                 if (it) {

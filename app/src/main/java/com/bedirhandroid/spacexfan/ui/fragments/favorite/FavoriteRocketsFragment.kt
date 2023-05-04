@@ -5,7 +5,6 @@ import com.bedirhandroid.spacexfan.base.BaseFragment
 import com.bedirhandroid.spacexfan.databinding.FragmentFavoriteRocketsBinding
 import com.bedirhandroid.spacexfan.network.response.rockets.SpaceXRocketsResponseItem
 import com.bedirhandroid.spacexfan.ui.adapters.favorite.FavoriteRocketsAdapter
-import com.bedirhandroid.spacexfan.ui.adapters.rockets.RocketsAdapter
 import com.bedirhandroid.spacexfan.util.gone
 import com.bedirhandroid.spacexfan.util.navigateTo
 import com.bedirhandroid.spacexfan.util.visible

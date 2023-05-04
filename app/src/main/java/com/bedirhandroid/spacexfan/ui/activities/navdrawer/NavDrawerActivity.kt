@@ -1,18 +1,18 @@
 package com.bedirhandroid.spacexfan.ui.activities.navdrawer
 
-import com.google.android.material.navigation.NavigationView
+import android.content.Intent
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import com.bedirhandroid.spacexfan.R
 import com.bedirhandroid.spacexfan.base.BaseActivity
 import com.bedirhandroid.spacexfan.databinding.ActivityNavDrawerBinding
+import com.google.android.material.navigation.NavigationView
 
 class NavDrawerActivity : BaseActivity<ActivityNavDrawerBinding, NavDrawerViewModel>() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun initView() {
@@ -30,12 +30,16 @@ class NavDrawerActivity : BaseActivity<ActivityNavDrawerBinding, NavDrawerViewMo
     }
 
     override fun initListeners() {
-
+        binding.appBarNavDrawer.btnSignOut.setOnClickListener {
+            viewModel.signOut()
+            Intent(this@NavDrawerActivity, NavDrawerActivity::class.java).also { _intent ->
+                startActivity(_intent)
+                finish()
+            }
+        }
     }
+    override fun initObservers() {}
 
-    override fun initObservers() {
-
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_nav_drawer)

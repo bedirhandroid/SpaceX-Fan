@@ -28,6 +28,10 @@ infix fun ImageView.isFavorite(bool: Boolean) {
 fun ImageView.fav() {
     this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.teal_700))
 }
+
+fun ImageView.unFav() {
+    this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.black))
+}
 //ImageView ext for load image
 fun ImageView.loadImage(url: String) {
     Glide.with(this.context)

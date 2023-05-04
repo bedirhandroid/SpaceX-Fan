@@ -67,7 +67,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : HiltFragment
         //observe baseViewModel LiveDatas
         viewModelScope {
             this.errorLiveData.observe(viewLifecycleOwner) {
-                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(it.id), Toast.LENGTH_SHORT).show()
             }
             this.showProgress.observe(viewLifecycleOwner) {
                 if (it) {

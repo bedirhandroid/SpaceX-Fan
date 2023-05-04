@@ -13,7 +13,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textColor="@color/teal_700"
-        android:text="Liste Boş Roketleri Görmek İçin Tıklayınız!"/>
+        android:text="@string/empty_list"/>
 
 
     <com.airbnb.lottie.LottieAnimationView

@@ -7,100 +7,78 @@
     tools:context=".ui.fragments.login.LoginFragment">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
         android:layout_margin="16dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/login_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Giriş Yap"
             android:textAlignment="center"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Giriş Yap" />
 
         <ImageView
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:background="@drawable/baseline_person_24"/>
+            android:background="@drawable/ic_person" />
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edt_username"
+            android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Kullanıcı Adı"
-            android:visibility="gone"
+            android:hint="@string/e_mail_adress"
             android:inputType="textEmailAddress"
             android:padding="8dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="E-posta adresi"
-                android:inputType="textEmailAddress"
-                android:padding="8dp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="8dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edt_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Şifre"
-                android:inputType="textPassword"
-                android:padding="8dp" />
-
-            <TextView
-                android:id="@+id/forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Şifremi Unuttum"
-                android:textColor="@color/teal_700"
-                android:textSize="16sp" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_login"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/white"
-                android:background="@color/black"
-                android:text="Giriş Yap" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/black"
+            android:text="@string/login"
+            android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="@color/white"
-            android:visibility="gone"
             android:background="@color/black"
-            android:text="Kayıt Ol" />
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/register_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:textAlignment="center"
-            android:text="Ya da buradan Kayıt Ol!"/>
+            android:text="@string/or_register"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/login_action"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
+            android:text="@string/or_login"
             android:textAlignment="center"
-            android:visibility="gone"
-            android:text="Ya da buradan giriş Yap!"/>
-
-
-
+            android:visibility="gone" />
 
 
     </LinearLayout>
@@ -113,7 +91,6 @@
         android:orientation="vertical">
 
     </LinearLayout>
-
 
 
 </LinearLayout>
