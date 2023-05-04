@@ -30,5 +30,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_rockets">Rockets</string>
-    <string name="menu_gallery">Favorite Rockets</string>
+    <string name="menu_favorite">Favorite Rockets</string>
+    <string name="menu_detail">Rocket Detail</string>
 </resources>

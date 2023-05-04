@@ -1,6 +1,7 @@
 package com.bedirhandroid.spacexfan.util
 
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import com.bedirhandroid.spacexfan.R
@@ -20,7 +21,12 @@ fun View.visible() {
 }
 
 infix fun ImageView.isFavorite(bool: Boolean) {
-    if (bool) this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.purple_700))
+    if (bool) this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.teal_700))
+    else this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.black))
+}
+
+fun ImageView.fav() {
+    this.backgroundTintList = (ContextCompat.getColorStateList(this.context,R.color.teal_700))
 }
 //ImageView ext for load image
 fun ImageView.loadImage(url: String) {
@@ -28,4 +34,8 @@ fun ImageView.loadImage(url: String) {
         .load(url)
         .placeholder(R.drawable.ic_no_photo)
         .into(this)
+}
+
+fun EditText.isNotEmpty(): Boolean {
+    return (this.text.isNotEmpty())
 }

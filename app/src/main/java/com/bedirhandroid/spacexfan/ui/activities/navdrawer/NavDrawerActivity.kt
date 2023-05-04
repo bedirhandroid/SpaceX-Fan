@@ -22,7 +22,7 @@ class NavDrawerActivity : BaseActivity<ActivityNavDrawerBinding, NavDrawerViewMo
         val navController = findNavController(R.id.nav_host_fragment_content_nav_drawer)
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery
+                R.id.rocketsFragment, R.id.favoritesFragment
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

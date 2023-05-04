@@ -60,7 +60,7 @@ abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : HiltActivity
         //observe baseViewModel LiveDatas
         viewModelScope {
             this.errorLiveData.observe(this@BaseActivity) {
-                Toast.makeText(this@BaseActivity, getString(it.id), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@BaseActivity, it, Toast.LENGTH_SHORT).show()
             }
             this.showProgress.observe(this@BaseActivity) {
                 if (it) {

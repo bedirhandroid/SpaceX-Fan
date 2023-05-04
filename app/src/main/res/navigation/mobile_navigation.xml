@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/rocketsFragment">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/rocketsFragment"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.rocket.RocketsFragment"
         android:label="@string/menu_rockets"
         tools:layout="@layout/fragment_rockets" >
@@ -15,17 +15,38 @@
             app:destination="@id/rocketDetailFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_rocketsFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_rocketsFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/favoritesFragment"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.favorite.FavoriteRocketsFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_favorite_rockets" />
+        android:label="@string/menu_favorite"
+        tools:layout="@layout/fragment_favorite_rockets" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rocketDetailFragment"
         android:name="com.bedirhandroid.spacexfan.ui.fragments.detail.RocketDetailFragment"
-        android:label="fragment_rocket_detail"
+        android:label="@string/menu_detail"
         tools:layout="@layout/fragment_rocket_detail" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.bedirhandroid.spacexfan.ui.fragments.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_rocketsFragment"
+            app:destination="@id/rocketsFragment" />
+    </fragment>
 
 </navigation>

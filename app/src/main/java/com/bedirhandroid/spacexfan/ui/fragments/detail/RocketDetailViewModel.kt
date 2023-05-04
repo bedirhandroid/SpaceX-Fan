@@ -20,7 +20,7 @@ class RocketDetailViewModel @Inject constructor(private val repo: Repo) : BaseVi
         sendRequest {
             repo.getRocketDetail(id).collectLatest {
                 it?.let(mutableRocketDetailLiveData::postValue)?: kotlin.run {
-                    errorLiveData.postValue(ErrorMessages.ERROR)
+                    errorLiveData.postValue("Error")
                 }
             }
         }
